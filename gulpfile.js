@@ -37,15 +37,18 @@ gulp.task('styles', function () {
 
 gulp.task('scripts', function () {
     return gulp.src([
+        paths.bower + 'jquery/dist/jquery.js',
         paths.bower + 'bootstrap-sass/assets/javascripts/bootstrap.js',
+        paths.bower + 'fontawesome/svg-with-js/js/fontawesome.js',
         paths.assets.scripts + 'main.js',
     ])
         .pipe(concat('app.js'))
         .pipe(gulp.dest(paths.assets.scripts))
         .pipe(rename('app.min.js'))
         .pipe(uglify())
-        .pipe(gulp.dest(paths.assets.scripts))
-        .pipe(obfuscate({ replaceMethod: obfuscate.ZALGO }))
+        //uncomment if you want an obfuscated js
+        //.pipe(gulp.dest(paths.assets.scripts)) 
+        //.pipe(obfuscate({ replaceMethod: obfuscate.ZALGO }))
         .pipe(gulp.dest(paths.public.js));
 });
 
